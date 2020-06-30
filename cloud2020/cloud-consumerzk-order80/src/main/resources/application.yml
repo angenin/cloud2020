@@ -1,0 +1,11 @@
+#端口号
+server:
+  port: 80
+
+#服务别名——注册到zookeeper注册中心的名称
+spring:
+  application:
+    name: cloud-consumer-order
+  cloud:
+    zookeeper:
+      connect-string: 10.211.55.17:2181 #linux的ip加暴露的端口号

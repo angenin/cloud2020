@@ -1,0 +1,19 @@
+server:
+  port: 80
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+#需要加上，否则会报错
+ribbon:
+  ReadTimeout: 4000
+  ConnectTimeout: 4000
+
+
+feign:
+  hystrix:
+    enabled: true

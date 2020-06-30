@@ -1,0 +1,25 @@
+#访问一个网站时，默认是80端口，给用户80端口，用户就可以不用加端口直接访问页面
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-order-service
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1  #采样率值介于0到1之间，1则表示全部采集（一般不为1，不然高并发性能会有影响）
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #单机版
+#      defaultZone: http://localhost:7001/eureka
+      #集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: consumer80   #修改显示的主机名
+    prefer-ip-address: true   #访问路径可以显示ip地址

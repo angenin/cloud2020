@@ -1,0 +1,25 @@
+server:
+  port: 84
+
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.211.55.26:8848  #nacos
+    sentinel:
+      transport:
+        dashboard: 10.211.55.26:8858    #sentinel
+        port: 8719
+
+
+
+#消费者将去访问的微服务名称
+server-url:
+  nacos-user-service: http://nacos-payment-provider
+
+#激活Sentinel对Feign的支持
+feign:
+  sentinel:
+    enabled: true

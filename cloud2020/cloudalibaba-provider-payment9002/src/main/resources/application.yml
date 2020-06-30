@@ -1,0 +1,19 @@
+server:
+  port: 9002
+
+
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: 10.211.55.17:8848  #配置的Nacos地址（本机的写localhost:8848，服务器的写IP地址）
+        server-addr: 10.211.55.26:1111  #nginx的地址
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

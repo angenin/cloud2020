@@ -1,0 +1,38 @@
+#微服务建议一定要写服务端口号和微服务名称
+server:
+  #端口号
+  port: 8002
+
+spring:
+  application:
+    #微服务名称
+    name: cloud-payment-service
+  #数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #mysql5.x的没有cj
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #记得先创建数据库
+    url: jdbc:mysql://localhost:3306/db2020?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 5634890
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.angenin.springcloud.entities #所有Entity别名类所在包
+
+eureka:
+  client:
+    #true表示向注册中心注册自己，默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      #单机版
+#      defaultZone: http://localhost:7001/eureka
+      #集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: payment8002  #修改显示的主机名
+    prefer-ip-address: true   #访问路径可以显示ip地址

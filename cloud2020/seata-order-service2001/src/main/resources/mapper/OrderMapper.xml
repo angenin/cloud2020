@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.angenin.springcloud.dao.OrderDao">
+
+    <resultMap id="BaseResultMap" type="com.angenin.springcloud.domain.Order">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="product_id" property="productId" jdbcType="BIGINT" />
+        <result column="count" property="count" jdbcType="INTEGER" />
+        <result column="money" property="money" jdbcType="DECIMAL" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="create" parameterType="com.angenin.springcloud.domain.Order"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_order(`user_id`, `product_id`, `count`, `money`, `status`)
+            values(#{userId}, #{productId}, #{count}, #{money}, 0);
+    </insert>
+    <update id="update" parameterType="com.angenin.springcloud.domain.Order">
+        update t_order set `status` = 1
+            where `user_id` = #{userId} and `status` = #{status};
+    </update>
+</mapper>
